@@ -1,20 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useMyContext } from "../ContextProvider/Context";
 
 // =========================================
 
 const NavbarComp = () => {
   // =========================================
   const navigate = useNavigate();
-
+  const { loginData, setLoginData } = useMyContext();
   const UserLogout = async () => {
     try {
       const User = await axios.get(`${import.meta.env.VITE_URL}/logout`, {
         withCredentials: true,
       });
-      localStorage.removeItem("UserToken");
       navigate("/");
+      setLoginData("");
       toast.success(User.data.message);
     } catch (error) {
       toast.success(error);
@@ -61,6 +62,9 @@ const NavbarComp = () => {
                 </button>
               </li>
             </ul>
+            <div className="btn btn-primary">
+              {loginData ? loginData : "Guest"}
+            </div>
           </div>
         </div>
       </nav>

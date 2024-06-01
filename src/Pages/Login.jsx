@@ -4,8 +4,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./form.css";
+import { useMyContext } from "../ContextProvider/Context";
 const Login = () => {
   const [passShow, setPassShow] = useState(false);
+  const { UserAuthCheck } = useMyContext();
+
   const navigate = useNavigate();
   // -------------------------------------------------------------
 
@@ -46,9 +49,8 @@ const Login = () => {
             withCredentials: true, // enable sending and storing cookies
           }
         );
-        localStorage.setItem("UserToken", NewUser.data.token);
         toast.success(NewUser.data.msg);
-        console.log(NewUser.data.msg);
+        UserAuthCheck();
         navigate("/home");
       } catch (error) {
         console.log(error);
@@ -69,7 +71,7 @@ const Login = () => {
     <>
       <section>
         <div className="form_data">
-          <h1>Welcome Back, Log In</h1>
+          <h1>Login</h1>
           <p>Hi, We are you glad you are back. please login.</p>
 
           <form>
@@ -110,7 +112,7 @@ const Login = () => {
               Login
             </button>
             <p>
-              Don't have an Account?<Link to="/register">Sign Up</Link>
+              Don't have an Account ? <Link to="/register">Sign Up</Link>
             </p>
           </form>
         </div>

@@ -6,6 +6,7 @@ section {
 
 section .form_data {
   max-width: 550px;
+  min-width: 200px;
   margin: 25px auto;
   padding: 5px;
   box-shadow: 0 0 15px -10px #2d3748;
@@ -22,14 +23,15 @@ section .form_data {
 }
 
 .form_data h1 {
-  font-size: 34px;
+  font-size: 2rem;
   color: #2a4365;
+  line-height: normal;
+  text-align: center;
 }
 
 .form_data p {
   color: #718096;
   font-size: 1rem;
-  margin-top: 9px;
   text-align: center;
 }
 
@@ -114,4 +116,17 @@ form .btn:hover {
   text-decoration: none;
   color: #718096;
   border-bottom: 2px solid #8694a8;
+}
+
+@media (max-width: 470px) {
+  .form_data form {
+    width: 100%;
+    padding: 1rem 1rem;
+  }
+
+  .form_data form p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
 }
